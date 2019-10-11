@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="./Public/Home/Css/public.css" rel="stylesheet" type="text/css">
+<title>博文内容页</title>
+</head>
+
+<body>
+<!--项部导航栏-->
+<div class="topbar">
+	<div class="content">
+		<div class="divL">
+			<a href="javascript:void(0)">设为首页</a> 
+			<a href="javascript:void(0)">加入收藏</a>
+		</div>
+		<div class="divR">
+			<{if !empty($smarty.session.username)}>
+			<span>欢迎，<font color="red"><{$smarty.session.username}></font>(管理员)！</span>
+			<a href="./admin.php">后台管理</a>
+			<a href="admin.php?c=User&a=logout">退出管理</a>
+			<{else}>
+			<span>欢迎光临！我的小博客</span>
+			<a href="./admin.php?c=User&login">登录</a>		
+			<{/if}>
+		</div>
+	</div>
+</div><!--//顶部导航栏-->
+
+<!--博客背景-->
+<div class="blogbg">
+	<div class="header">
+		<div class="title">
+			<h2>乌云飘落的博客</h2>
+			<p><a href="javascript:void(0)">http://www.falling0.cn/</a></p>
+		</div>
+		<div class="menu">
+			<ul>
+				<li><a href="./index.php" class="current">首页</a></li>
+				<li><a href="?c=Index&a=showList">博文目录</a></li>
+				<li><a href="javascript:void(0)">图片</a></li>
+				<li><a href="javascript:void(0)" class="noLine">关于我</a></li>
+			</ul>
+		</div>
+	</div>
+</div><!--//博客背景-->
+
+<!--博客主体-->
+<div class="contains">
+<!--左边栏-->
+<div class="left">
+	<div class="toptitle">博文正文</div>
+	<!--博文正文-->
+	<div class="blogdetail">
+		<div class="title">
+			<a href="javascript:void(0)"><{$article.title}></a>
+			<span>(<{$article.addate|date_format:'%Y-%m-%d %H:%M:%S'}>)</span>
+		</div>
+		<div class="content">
+			<{$article.content}>
+		</div>
+		<div class="bottom">
+			<!--页面分享代码-->
+			<div class="bdsharebuttonbox">
+				<a href="#" class="bds_more" data-cmd="more"></a>
+				<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+				<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+				<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+				<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+				<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+			</div>
+			<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+			<!--//页面分享代码-->
+			<div class="other">
+				作者:<{$article.name}> | 
+				分类:<{$article.classname}> | 
+				阅读:<{$article.read}> | 
+				<a href="?c=Index&a=praise&id=<{$article.id}>">点赞:<{$article.praise}></a> |
+				 评论:<{$article.comment_count}>
+			</div>
+		</div>
+	</div><!--//博文正文-->
+
+	<!--分页代码-->
+	<div class="pagelist2">
+		<ul>
+			<li>前一篇：
+				<{if empty($prevNext[0])}>
+					无
+				<{else}>
+				<a href="?c=Index&a=content&id=<{$prevNext[0]['id']}>"><{$prevNext[0]['title']}></a>
+				<{/if}>
+			</li>
+			<li>后一篇：
+				<{if empty($prevNext[1])}>
+					无
+				<{else}>
+				<a href="?c=Index&a=content&id=<{$prevNext[1]['id']}>"><{$prevNext[1]['title']}></a>
+				<{/if}>
+			</li>
+		</ul>
+	</div><!--//分页代码-->
+
+	<!--评论-->
+	<div class="comment">
+		<div class="title">评论列表</div>
+		<!--主评论内容-->
+		<ul class="ul01">
+			<li>
+				<img src="./Public/Home/Images/head.png">
+				<p class="p1">
+					<b><a href="#">张三丰</a> 发布于2017-1-23 10:00</b>
+					<a href="javascript:void(0)">回复</a>
+				</p>
+				<p class="p2">据了解，此次出炉的征求意见稿发布了“科学简明，避免重名”“必要、合理”“避免暗示、夸大疗效”“体现传统文化特色”四条命名基本原则。首先，中成药通用名称应科学、明确、简短、不易产生歧义和误导，避免使用生涩用语。据了解，此次出炉的征求意见稿发布了“科学简明，避免重名”“必要、合理”“避免暗示、夸大疗效”“体现传统文化特色”四条命名基本原则。首先，中成药通用名称应科学、明确、简短、不易产生歧义和误导，避免使用生涩用语。</p>
+				<div class="clear">
+				<!--子评论内容-->
+				<ul class="ul02">
+					<li>
+						<img src="./Public/Home/Images/head.png">
+						<p class="p3">
+							<b><a href="#">李东平</a> 发布于2017-1-23 10:00</b>
+						</p>
+						<p class="p4">首先，中成药通用名称应科学、明确、简短、不易产生歧义和误导，避免使用生涩用语。据了解，此次出炉的征求意见稿发布了“科学简明，避免重名”“必要、合理”“避免暗示、夸大疗效”“体现传统文化特色”四条命名基本原则。首先，中成药通用名称应科学、明确、简短、不易产生歧义和误导，避免使用生涩用语。</p>
+						<div class="clear"></div>
+					</li>
+				</ul><!--//子评论结内容-->
+			</li>
+		</ul><!--//主评论内容-->
+		<form name="comment" method="post" action="">
+		<div>发表评论(*)</div>
+		<textarea name="content" style="width:95%;height:150px;"></textarea>
+		<input type="hidden" name="article_id" value="0">
+		<input type="hidden" name="pid" value="0">
+		<br><input type="submit" value="提交" />
+		</form>
+	</div><!--//评论-->
+</div><!--//左边栏-->
+<!--右边栏-->
+<div class="right">
+
+	<!--文章分类-->
+	<div class="category">
+		<div class="title">文章分类</div>
+		<div class="content">
+			<ul>
+				<{foreach $categorys as $category}>
+				<li><a href="?c=Index&a=showList&category_id=<{$category.id}>">
+					<{str_repeat("--", $category.level*2)}>
+					<{$category.classname}>
+					</a>
+					(<font color="red"><{$category.article_count}></font>)
+				</li>
+				<{/foreach}>
+			</ul>
+		</div>
+	</div><!--//文章分类-->
+	<!--最新评论-->
+	<div class="comment">
+		<!-- <div class="title">最新评论</div>
+		<div class="content">
+			<ul>
+				<li>
+					<div>张三丰<span>2015-10-12 10:12</span></div>
+					<a href="javascript:void(0)">竟然还有这样的事情，真是可恨</a>
+				</li>
+				<li>
+					<div>张三丰<span>2015-10-12 10:12</span></div>
+					<a href="javascript:void(0)">竟然还有这样的事情，真是可恨</a>
+				</li>
+				<li>
+					<div>张三丰<span>2015-10-12 10:12</span></div>
+					<a href="javascript:void(0)">竟然还有这样的事情，真是可恨</a>
+				</li>
+			</ul>
+		</div> -->
+	</div><!--//最新评论-->
+	<!--文章归档-->
+	<div class="category-date">
+		<!-- <div class="title">文章归档</div>
+		<div class="content">
+			<ul>
+				<li><a href="javascript:void(0)">2016年12月</a> (24)</li>
+				<li><a href="javascript:void(0)">2016年11月</a> (34)</li>
+				<li><a href="javascript:void(0)">2016年10月</a> (15)</li>
+				<li><a href="javascript:void(0)">2016年09月</a> (18)</li>
+				<li><a href="javascript:void(0)">2016年08月</a> (123)</li>
+				<li><a href="javascript:void(0)">2016年07</a> (240)</li>
+			</ul>
+		</div> -->
+	</div><!--//文章归档-->
+	<!--友情链接-->
+	<div class="links">
+		<!-- <div class="title">友情链接</div>
+		<div class="content">
+			<ul>
+				<li><a href="javascript:void(0)">百度搜索</a></li>
+				<li><a href="javascript:void(0)">新浪咨询</a></li>
+				<li><a href="javascript:void(0)">传智播客</a></li>
+				<li><a href="javascript:void(0)">黑马程序员</a></li>
+				<li><a href="javascript:void(0)">博学谷题库</a></li>
+				<li><a href="javascript:void(0)">007在线</a></li>
+			</ul>
+		</div> -->
+	</div><!--//友情链接-->
+</div><!--//右边栏-->
+<div class="clear"></div>
+</div><!--//博客主体-->
+
+<!--网页底部-->
+<div class="footer">
+版权所有 乌云飘落 &nbsp;&nbsp;邮箱: 211515776@qq.com<br />京ICP备08001421号   京公网安备110108007702
+</div><!--//网页底部-->
+</body>
+</html>

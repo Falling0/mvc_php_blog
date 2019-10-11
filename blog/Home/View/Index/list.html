@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="./Public/Home/Css/public.css" rel="stylesheet" type="text/css">
+<title>博文列表页</title>
+</head>
+
+<body>
+<!--项部导航栏-->
+<div class="topbar">
+	<div class="content">
+		<div class="divL">
+			<a href="javascript:void(0)">设为首页</a> 
+			<a href="javascript:void(0)">加入收藏</a>
+		</div>
+		<div class="divR">
+			<{if !empty($smarty.session.username)}>
+			<span>欢迎，<font color="red"><{$smarty.session.username}></font>(管理员)！</span>
+			<a href="./admin.php">后台管理</a>
+			<a href="admin.php?c=User&a=logout">退出管理</a>
+			<{else}>
+			<span>欢迎光临！我的小博客</span>
+			<a href="./admin.php?c=User&login">登录</a>		
+			<{/if}>
+		</div>
+	</div>
+</div><!--//顶部导航栏-->
+
+<!--博客背景-->
+<div class="blogbg">
+	<div class="header">
+		<div class="title">
+			<h2>乌云飘落的博客</h2>
+			<p><a href="javascript:void(0)">http://www.falling0.cn/</a></p>
+		</div>
+		<div class="menu">
+			<ul>
+				<li><a href="./index.php" class="current">首页</a></li>
+				<li><a href="?c=Index&a=showList">博文目录</a></li>
+				<li><a href="javascript:void(0)">图片</a></li>
+				<li><a href="javascript:void(0)" class="noLine">关于我</a></li>
+			</ul>
+		</div>
+	</div>
+</div><!--//博客背景-->
+
+<!--博客主体-->
+<div class="contains">
+<!--左边栏-->
+<div class="left">
+	<div class="toptitle">博文列表</div>
+	<!--博文简介-->
+	<div class="bloglist">
+		<ul>
+			<{foreach $articles as $article}>
+			<li><a href="?c=Index&a=content&id=<{$article.id}>"><{$article.title}></a>
+				<span><span class="span1">(<{$article.comment_count}>/<{$article.read}>)
+				</span> <{$article.addate|date_format:'%Y-%m-%d %H:%M:%S'}></span>
+			</li>
+			<{/foreach}>
+		</ul>
+	</div><!--//博文列表-->
+
+	<!--分页代码-->
+	<div class="pagelist">
+		<{$pageStr}>
+		<!-- <span>
+			<select onchange="javascript:location.href='index.html?page=5'">
+				<option value="1">1</option>
+				<option value="1">2</option>
+				<option value="1">3</option>
+				<option value="1">4</option>
+				<option value="1">5</option>
+				<option value="1">6</option>
+				<option value="1">7</option>
+				<option value="1">8</option>
+			</select>
+		</span>
+		<span>
+			<form name="form2" method="post" action="">
+				<input type="text" name="page" value="2">
+				<input type="submit" value="提交">
+			</form>
+		</span> -->
+	</div><!--//分页代码-->
+</div><!--//左边栏-->
+<!--右边栏-->
+<div class="right">
+	<!--文章标题搜索-->
+	<div class="search">
+		<div class="title">文章标题搜索</div>
+		<div class="content">
+			<form name="form1" method="post" action="">
+				<input class="search" type="text" name="title">
+				<input type="submit" value="搜索">
+			</form>
+		</div>
+	</div><!--//文章标题搜索-->
+	<!--文章分类-->
+	<div class="category">
+		<div class="title">文章分类</div>
+		<div class="content">
+			<ul>
+				<{foreach $categorys as $category}>
+				<li><a href="?c=Index&a=showList&category_id=<{$category.id}>">
+					<{str_repeat("--", $category.level*2)}>
+					<{$category.classname}>
+					</a>
+					(<font color="red"><{$category.article_count}></font>)
+				</li>
+				<{/foreach}>
+			</ul>
+		</div>
+	</div><!--//文章分类-->
+	<!--最新评论-->
+	<div class="comment">
+		<div class="title">最新评论</div>
+		<div class="content">
+			<ul>
+				<li>
+					<div>张小三<span>2018-10-12 10:12</span></div>
+					<a href="javascript:void(0)">远看寒山石近斜</a>
+				</li>
+				<li>
+					<div>李小四<span>2018-10-12 10:12</span></div>
+					<a href="javascript:void(0)">白云深处有人家</a>
+				</li>
+				<li>
+					<div>路人甲<span>2018-10-12 10:12</span></div>
+					<a href="javascript:void(0)">竟然还有这样的事情</a>
+				</li>
+			</ul>
+		</div>
+	</div><!--//最新评论-->
+	<!--文章归档-->
+	<div class="category-date">
+		<div class="title">文章归档</div>
+		<div class="content">
+			<ul>
+				<{foreach $months as $month}>
+				<li><a href="?c=Index&a=showList&yearmonth=<{$month.yearmonth}>">
+					<{$month.yearmonth}>
+					</a>
+					(<font color="red"><{$month.article_count}></font>)
+				</li>
+				<{/foreach}>
+			</ul>
+		</div>
+	</div><!--//文章归档-->
+	<!--友情链接-->
+	<div class="links">
+		<div class="title">友情链接</div>
+		<div class="content">
+			<ul>
+				<{foreach $links as $link}>
+				<li><a target="_blank" href="<{$link.url}>"><{$link.domain}></a></li>
+				<{/foreach}>
+			</ul>
+		</div>
+	</div><!--//友情链接-->
+</div><!--//右边栏-->
+<div class="clear"></div>
+</div><!--//博客主体-->
+
+<!--网页底部-->
+<div class="footer">
+版权所有 乌云飘落 &nbsp;&nbsp;邮箱: 211515776@qq.com<br />京ICP备08001421号   京公网安备110108007702
+</div><!--//网页底部-->
+</body>
+</html>
