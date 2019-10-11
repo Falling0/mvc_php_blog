@@ -38,4 +38,4 @@
 
 ### 展示
 
-![img](https://github.com/Falling0/mvc_php_blog/raw/master/demo_img/demo.gif)
+![img]()
