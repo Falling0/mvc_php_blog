@@ -38,4 +38,19 @@
 
 ### 展示
 
-![img]()
+![演示动态图](https://github.com/Falling0/mvc_php_blog/blob/master/demo_img/demo.gif)
+
+首页
+![首页](https://github.com/Falling0/mvc_php_blog/blob/master/demo_img/index.png)
+
+列表页
+![列表页](https://github.com/Falling0/mvc_php_blog/blob/master/demo_img/list.png)
+
+详细页
+![](https://github.com/Falling0/mvc_php_blog/blob/master/demo_img/xiangxi.png)
+
+后台文章列表
+![](https://github.com/Falling0/mvc_php_blog/blob/master/demo_img/text.png)
+
+添加文章
+![](https://github.com/Falling0/mvc_php_blog/blob/master/demo_img/content.png)
